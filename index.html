@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit Kanchan | US Staffing Leader & P&L Strategist</title>
+    <title>Sumit Kanchan | US Staffing Operations & P&L Leader</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js & Datalabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -81,14 +83,14 @@
         .metric-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         .charts-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 25px; margin-bottom: 30px;
         }
 
         @media (max-width: 500px) { .charts-grid { grid-template-columns: 1fr; } }
 
         .chart-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; }
-        .chart-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 15px; }
+        .chart-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 15px; text-align: center; }
 
         .section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 35px; margin-bottom: 30px; }
         .section-title { font-size: 1.4rem; font-weight: 600; color: #ffffff; margin-bottom: 20px; border-bottom: 2px solid var(--card-border); padding-bottom: 10px; }
@@ -142,7 +144,7 @@
             <h1>Sumit Kanchan</h1>
             <div class="title-badge">US Staffing Operations &amp; P&amp;L Leader | Branch Delivery Head</div>
             <p class="summary">
-                Accomplished Business Unit Leader with 15+ years of success driving US staffing operations, branch profitability, and strategic talent delivery. Proven P&amp;L driver consistently exceeding Revenue, Gross Margin (GM), and Direct Portfolio Contribution Margin (DPCM) goals through strict financial governance, account optimization, and AI sourcing automation.
+                Accomplished Operations Leader with 15+ years of progressive success driving US staffing delivery, branch profitability, and financial governance for Tier-1 Systems Integration partners. Proven track record of expanding Gross Margin % (12.9% → 16.9%) and outpacing revenue and DPCM targets.
             </p>
             
             <div class="btn-container">
@@ -153,30 +155,30 @@
 
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-number">$50.4M+</div>
-                <div class="metric-label">Cumulative Revenue (2024–2026 YTD)</div>
+                <div class="metric-number">16.9%</div>
+                <div class="metric-label">Gross Margin % (2026 H1)</div>
             </div>
             <div class="metric-card">
-                <div class="metric-number">200%+</div>
-                <div class="metric-label">Avg Margin Attainment ('24-'25)</div>
+                <div class="metric-number">141.2%</div>
+                <div class="metric-label">2025 Revenue Attainment</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">257.6%</div>
+                <div class="metric-label">2025 DPCM Attainment</div>
             </div>
             <div class="metric-card">
                 <div class="metric-number">350+</div>
                 <div class="metric-label">Active Billing Consultants</div>
             </div>
-            <div class="metric-card">
-                <div class="metric-number">32</div>
-                <div class="metric-label">Delivery &amp; Ops Team Scale</div>
-            </div>
         </div>
 
         <div id="financials" class="charts-grid">
             <div class="chart-card">
-                <div class="chart-title">Revenue Trajectory ($M)</div>
+                <div class="chart-title">Revenue Target vs Actual ($M) &amp; Attainment %</div>
                 <canvas id="revenueChart"></canvas>
             </div>
             <div class="chart-card">
-                <div class="chart-title">Gross Margin &amp; DPCM Performance ($M)</div>
+                <div class="chart-title">Gross Margin &amp; DPCM Target vs Actual ($M)</div>
                 <canvas id="marginChart"></canvas>
             </div>
         </div>
@@ -184,47 +186,48 @@
         <div class="section">
             <h2 class="section-title">Core Competencies &amp; Strategic Scope</h2>
             <div class="skills-wrapper">
-                <div class="skill-tag">Branch P&amp;L &amp; Financial Governance</div>
-                <div class="skill-tag">Margin Expansion (DPCM / SG&amp;A Optimization)</div>
-                <div class="skill-tag">US Staffing Operations Leadership</div>
-                <div class="skill-tag">Enterprise Account Farming &amp; Governance</div>
+                <div class="skill-tag">US Staffing Branch Governance</div>
+                <div class="skill-tag">Gross Margin Expansion (12.9% → 16.9%)</div>
+                <div class="skill-tag">Direct Portfolio Contribution Margin (DPCM)</div>
+                <div class="skill-tag">Global Systems Integrator (GSI) Account Delivery</div>
                 <div class="skill-tag">Bulk Rate Reduction &amp; Cost Pass-Down Strategy</div>
-                <div class="skill-tag">AI Sourcing Automation (RecruitBot)</div>
-                <div class="skill-tag">Vendor Risk &amp; Compliance Audits</div>
-                <div class="skill-tag">Cross-Functional Team Scaling</div>
+                <div class="skill-tag">Internal Operational Audits &amp; Compliance</div>
+                <div class="skill-tag">Hybrid Sourcing Automation (RecruitBot)</div>
+                <div class="skill-tag">High-Velocity Delivery Execution</div>
             </div>
         </div>
 
         <div class="section" id="experience">
-            <h2 class="section-title">Leadership &amp; P&amp;L Management Experience</h2>
+            <h2 class="section-title">Leadership &amp; Operations Experience</h2>
             
             <div class="timeline-item">
                 <div class="job-title">Branch Delivery Manager</div>
                 <div class="company-meta">Pyramid Consulting, Inc | Apr 2023 – Present</div>
                 <ul class="bullet-list">
-                    <li>Steer complete operational, financial, and delivery governance across 6+ tier-1 enterprise accounts, overseeing 3 direct managers and an indirect team of 25 recruiters.</li>
-                    <li>Delivered phenomenal financial performance in 2025: hit <strong>$20.92M in Revenue (141% of target)</strong>, <strong>$2.92M in Gross Margin (201% of target)</strong>, and <strong>$2.00M in DPCM (257% of target)</strong>.</li>
-                    <li>Sustained strong momentum through 2026 H1, achieving <strong>109% of GM Goal ($1.75M)</strong> and <strong>112% of DPCM Goal ($1.31M)</strong> across Q1 and Q2.</li>
-                    <li>Protected 99% Gross Margin during aggressive client-mandated rate cuts by restructuring vendor commercial terms and eliminating low-margin executive exemptions.</li>
+                    <li>Drive end-to-end operational, financial, and delivery governance across strategic Systems Integration enterprise accounts, directing 3 managers and 25 recruiters.</li>
+                    <li>Achieved continuous Gross Margin (GM) expansion, raising portfolio profitability from <strong>12.9% in 2024 to 16.2% in 2025, reaching 16.9% in 2026 H1</strong>.</li>
+                    <li>Delivered outstanding 2025 financial results: generated <strong>$20.92M Revenue (141.2% of Goal)</strong>, <strong>$2.92M GM (201.5% of Goal)</strong>, and <strong>$2.00M DPCM (257.6% of Goal)</strong>.</li>
+                    <li>Sustained strong momentum through 2026 H1: achieved <strong>100.8% Revenue ($11.49M)</strong>, <strong>109.1% GM ($1.75M)</strong>, and <strong>112.4% DPCM ($1.31M)</strong> against goals.</li>
+                    <li>Protected 99% Gross Margin during complex client bulk rate reductions by aligning vendor commercial structures and strictly managing DPCM governance.</li>
                 </ul>
 
                 <details>
-                    <summary>🔍 Strategy Highlight: Operational Cost Control &amp; DPCM Optimization</summary>
-                    <p>By enforcing strict DPCM controls and optimizing team resource allocation, successfully grew branch profitability from $2.15M DPCM in 2024 to over 250% target attainment in 2025, ensuring maximum bottom-line contribution despite shifting market dynamics.</p>
+                    <summary>🔍 Operational Quality: Internal Audits &amp; Delivery Health</summary>
+                    <p>Spearheaded routine internal team audits utilizing proprietary tracking systems ("MB" platform) to evaluate call volume, candidate submittals, interview conversion ratios, and compliance paperwork accuracy across all delivery pods.</p>
                 </details>
 
                 <details>
-                    <summary>🔍 Strategy Highlight: Sourcing Automation &amp; Capacity Scaling</summary>
-                    <p>Pioneered the enterprise integration of RecruitBot AI, automating 70% of initial sourcing workflows for passive requisitions to dramatically boost branch delivery velocity without expanding operating expenses.</p>
+                    <summary>🔍 Technology Strategy: Sourcing Extension via RecruitBot AI</summary>
+                    <p>Implemented RecruitBot AI as an automated digital sourcing assistant to cover low-priority and high-volume requisitions, allowing human recruiters to focus bandwidth on high-touch enterprise candidates.</p>
                 </details>
             </div>
 
             <div class="timeline-item">
-                <div class="job-title">Delivery Manager → Sr. Executive (Progressive Leadership Track)</div>
+                <div class="job-title">Delivery Manager → Sr. Executive (Progressive Track)</div>
                 <div class="company-meta">Pyramid Consulting, Inc | Sep 2013 – Mar 2023</div>
                 <ul class="bullet-list">
-                    <li>Earned 4 rapid promotions over 10 years based on consistent revenue contribution, operational rigor, and scaling recruiting pods into high-margin delivery units.</li>
-                    <li>Established internal performance metrics tracking systems ("MB" Platform) to maintain high-velocity execution and team accountability.</li>
+                    <li>Accelerated through 4 rapid promotions over 10 years based on placement excellence, team coaching, and account execution.</li>
+                    <li>Scaled delivery teams across major IT consulting and enterprise systems implementation accounts.</li>
                 </ul>
             </div>
 
@@ -232,7 +235,7 @@
                 <div class="job-title">Sr. Resource Specialist</div>
                 <div class="company-meta">FCS Software Solutions | Apr 2010 – Aug 2013</div>
                 <ul class="bullet-list">
-                    <li>Led end-to-end IT/Non-IT talent acquisition strategy for major US enterprise accounts.</li>
+                    <li>Anchored full-lifecycle recruiting and talent sourcing for US-based enterprise accounts across IT and Non-IT verticals.</li>
                 </ul>
             </div>
         </div>
@@ -243,10 +246,10 @@
                 <span>ATS &amp; Sourcing Automation:</span> JobDiva, RecruitBot AI, LinkedIn Recruiter, ZoomInfo, Dice, Monster, CareerBuilder
             </div>
             <div class="tech-category">
-                <span>VMS &amp; Vendor Management:</span> Beeline, SAP Fieldglass
+                <span>VMS Platforms:</span> Beeline, SAP Fieldglass
             </div>
             <div class="tech-category">
-                <span>P&amp;L Analytics &amp; Collaboration:</span> Internal Enterprise Analytics ("MB" Platform), Microsoft Teams
+                <span>Operational Analytics &amp; Tools:</span> Internal Enterprise Analytics ("MB" Platform), Microsoft Teams
             </div>
         </div>
 
@@ -257,21 +260,27 @@
     </div>
 
     <script>
-        // 1. Revenue Trajectory Line Chart (2024, 2025, 2026 H1)
+        // Register DataLabels Plugin
+        Chart.register(ChartDataLabels);
+
+        // Common Chart Style Settings
+        const chartFont = { family: 'Inter', size: 11, weight: '600' };
+
+        // 1. Revenue Target vs Actual Bar Chart with Attainment %
         const ctxRev = document.getElementById('revenueChart').getContext('2d');
         new Chart(ctxRev, {
             type: 'bar',
             data: {
-                labels: ['2024', '2025', '2026 (H1 YTD)'],
+                labels: ['2024', '2025', '2026 H1'],
                 datasets: [
                     {
-                        label: 'Revenue Goal ($M)',
+                        label: 'Goal ($M)',
                         data: [18.02, 14.82, 11.40],
                         backgroundColor: 'rgba(156, 163, 175, 0.4)',
                         borderRadius: 6
                     },
                     {
-                        label: 'Revenue Actual ($M)',
+                        label: 'Actual ($M)',
                         data: [18.04, 20.92, 11.49],
                         backgroundColor: '#38bdf8',
                         borderRadius: 6
@@ -280,45 +289,75 @@
             },
             options: {
                 responsive: true,
-                plugins: { legend: { labels: { color: '#f3f4f6' } } },
+                layout: { padding: { top: 25 } },
+                plugins: {
+                    legend: { labels: { color: '#f3f4f6', font: chartFont } },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: (ctx) => ctx.datasetIndex === 1 ? '#34d399' : '#9ca3af',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: (value, ctx) => {
+                            if (ctx.datasetIndex === 1) {
+                                const goals = [18.02, 14.82, 11.40];
+                                const pct = ((value / goals[ctx.dataIndex]) * 100).toFixed(1);
+                                return `$${value}M (${pct}%)`;
+                            }
+                            return `$${value}M`;
+                        }
+                    }
+                },
                 scales: {
-                    x: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } },
-                    y: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } }
+                    x: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' } },
+                    y: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' }, max: 25 }
                 }
             }
         });
 
-        // 2. Gross Margin & DPCM Performance Chart
+        // 2. Gross Margin & DPCM Target vs Actual Chart
         const ctxMargin = document.getElementById('marginChart').getContext('2d');
         new Chart(ctxMargin, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ['2024 Goal', '2024 Actual', '2025 Goal', '2025 Actual', '2026 H1 Goal', '2026 H1 Actual'],
+                labels: ['2024 GM', '2024 DPCM', '2025 GM', '2025 DPCM', '2026 H1 GM', '2026 H1 DPCM'],
                 datasets: [
                     {
-                        label: 'Gross Margin ($M)',
-                        data: [2.04, 2.15, 1.45, 2.92, 1.60, 1.75],
-                        borderColor: '#34d399',
-                        backgroundColor: 'rgba(52, 211, 153, 0.1)',
-                        fill: true,
-                        tension: 0.3
+                        label: 'Goal ($M)',
+                        data: [2.04, 1.02, 1.45, 0.78, 1.60, 1.17],
+                        backgroundColor: 'rgba(156, 163, 175, 0.4)',
+                        borderRadius: 6
                     },
                     {
-                        label: 'DPCM ($M)',
-                        data: [1.02, 2.15, 0.78, 2.00, 1.17, 1.31],
-                        borderColor: '#a855f7',
-                        backgroundColor: 'rgba(168, 85, 247, 0.1)',
-                        fill: true,
-                        tension: 0.3
+                        label: 'Actual ($M)',
+                        data: [2.15, 2.15, 2.92, 2.00, 1.75, 1.31],
+                        backgroundColor: '#34d399',
+                        borderRadius: 6
                     }
                 ]
             },
             options: {
                 responsive: true,
-                plugins: { legend: { labels: { color: '#f3f4f6' } } },
+                layout: { padding: { top: 25 } },
+                plugins: {
+                    legend: { labels: { color: '#f3f4f6', font: chartFont } },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: (ctx) => ctx.datasetIndex === 1 ? '#38bdf8' : '#9ca3af',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value, ctx) => {
+                            if (ctx.datasetIndex === 1) {
+                                const goals = [2.04, 1.02, 1.45, 0.78, 1.60, 1.17];
+                                const pct = ((value / goals[ctx.dataIndex]) * 100).toFixed(1);
+                                return `$${value}M (${pct}%)`;
+                            }
+                            return `$${value}M`;
+                        }
+                    }
+                },
                 scales: {
-                    x: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } },
-                    y: { ticks: { color: '#9ca3af' }, grid: { color: '#1f2937' } }
+                    x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: '#1f2937' } },
+                    y: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' }, max: 3.5 }
                 }
             }
         });
