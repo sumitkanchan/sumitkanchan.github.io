@@ -14,9 +14,8 @@
             --card-bg: #111827;
             --card-border: #1f2937;
             --accent-cyan: #38bdf8;
-            --accent-green: #34d399;
+            --accent-green: #10b981;
             --accent-purple: #a855f7;
-            --accent-glow: rgba(56, 189, 248, 0.15);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
         }
@@ -63,7 +62,7 @@
         .btn-container { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .btn { display: inline-block; padding: 11px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; transition: all 0.2s ease; }
         .btn-primary { background-color: var(--accent-cyan); color: #0b0f19; }
-        .btn-primary:hover { box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
+        .btn-primary:hover { transform: translateY(-2px); }
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid var(--card-border); }
         .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-2px); }
 
@@ -78,16 +77,20 @@
             transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .metric-card:hover { transform: translateY(-4px); border-color: var(--accent-cyan); box-shadow: 0 0 20px var(--accent-glow); }
+        .metric-card:hover { transform: translateY(-4px); border-color: var(--accent-cyan); }
         .metric-number { font-size: 2.1rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 5px; }
         .metric-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        .charts-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 25px; margin-bottom: 30px;
+        /* Charts Layout */
+        .charts-container {
+            display: flex; flex-direction: column; gap: 25px; margin-bottom: 30px;
         }
 
-        @media (max-width: 500px) { .charts-grid { grid-template-columns: 1fr; } }
+        .charts-row-split {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 25px;
+        }
+
+        @media (max-width: 500px) { .charts-row-split { grid-template-columns: 1fr; } }
 
         .chart-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 25px; }
         .chart-title { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 15px; text-align: center; }
@@ -142,7 +145,7 @@
         
         <header>
             <h1>Sumit Kanchan</h1>
-            <div class="title-badge">US Staffing Operations &amp; P&amp;L Leader | Branch Delivery Head</div>
+            <div class="title-badge">Delivery Head | US Staffing Operations &amp; P&amp;L Leader</div>
             <p class="summary">
                 Accomplished Operations Leader with 15+ years of progressive success driving US staffing delivery, branch profitability, and financial governance for Tier-1 Systems Integration partners. Proven track record of expanding Gross Margin % (12.9% → 16.9%) and outpacing revenue and DPCM targets.
             </p>
@@ -172,14 +175,24 @@
             </div>
         </div>
 
-        <div id="financials" class="charts-grid">
+        <!-- Dedicated Charts Section -->
+        <div id="financials" class="charts-container">
+            <!-- 1. Revenue Full-Width Chart -->
             <div class="chart-card">
                 <div class="chart-title">Revenue Target vs Actual ($M) &amp; Attainment %</div>
                 <canvas id="revenueChart"></canvas>
             </div>
-            <div class="chart-card">
-                <div class="chart-title">Gross Margin &amp; DPCM Target vs Actual ($M)</div>
-                <canvas id="marginChart"></canvas>
+
+            <!-- 2. Split Charts for GM & DPCM -->
+            <div class="charts-row-split">
+                <div class="chart-card">
+                    <div class="chart-title">Gross Margin (GM) Target vs Actual ($M)</div>
+                    <canvas id="gmChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <div class="chart-title">Direct Contribution Margin (DPCM) Target vs Actual ($M)</div>
+                    <canvas id="dpcmChart"></canvas>
+                </div>
             </div>
         </div>
 
@@ -263,28 +276,17 @@
         // Register DataLabels Plugin
         Chart.register(ChartDataLabels);
 
-        // Common Chart Style Settings
         const chartFont = { family: 'Inter', size: 11, weight: '600' };
+        const goalColor = '#475569'; // High-contrast Slate for Goal
 
-        // 1. Revenue Target vs Actual Bar Chart with Attainment %
-        const ctxRev = document.getElementById('revenueChart').getContext('2d');
-        new Chart(ctxRev, {
+        // 1. Revenue Chart (Cyan theme)
+        new Chart(document.getElementById('revenueChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['2024', '2025', '2026 H1'],
                 datasets: [
-                    {
-                        label: 'Goal ($M)',
-                        data: [18.02, 14.82, 11.40],
-                        backgroundColor: 'rgba(156, 163, 175, 0.4)',
-                        borderRadius: 6
-                    },
-                    {
-                        label: 'Actual ($M)',
-                        data: [18.04, 20.92, 11.49],
-                        backgroundColor: '#38bdf8',
-                        borderRadius: 6
-                    }
+                    { label: 'Goal ($M)', data: [18.02, 14.82, 11.40], backgroundColor: goalColor, borderRadius: 6 },
+                    { label: 'Actual ($M)', data: [18.04, 20.92, 11.49], backgroundColor: '#38bdf8', borderRadius: 6 }
                 ]
             },
             options: {
@@ -293,18 +295,10 @@
                 plugins: {
                     legend: { labels: { color: '#f3f4f6', font: chartFont } },
                     datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        color: (ctx) => ctx.datasetIndex === 1 ? '#34d399' : '#9ca3af',
+                        anchor: 'end', align: 'top',
+                        color: (ctx) => ctx.datasetIndex === 1 ? '#38bdf8' : '#9ca3af',
                         font: { weight: 'bold', size: 11 },
-                        formatter: (value, ctx) => {
-                            if (ctx.datasetIndex === 1) {
-                                const goals = [18.02, 14.82, 11.40];
-                                const pct = ((value / goals[ctx.dataIndex]) * 100).toFixed(1);
-                                return `$${value}M (${pct}%)`;
-                            }
-                            return `$${value}M`;
-                        }
+                        formatter: (val, ctx) => ctx.datasetIndex === 1 ? `$${val}M (${((val / [18.02, 14.82, 11.40][ctx.dataIndex]) * 100).toFixed(1)}%)` : `$${val}M`
                     }
                 },
                 scales: {
@@ -314,25 +308,14 @@
             }
         });
 
-        // 2. Gross Margin & DPCM Target vs Actual Chart
-        const ctxMargin = document.getElementById('marginChart').getContext('2d');
-        new Chart(ctxMargin, {
+        // 2. Gross Margin Chart (Emerald Green theme)
+        new Chart(document.getElementById('gmChart').getContext('2d'), {
             type: 'bar',
             data: {
-                labels: ['2024 GM', '2024 DPCM', '2025 GM', '2025 DPCM', '2026 H1 GM', '2026 H1 DPCM'],
+                labels: ['2024 GM', '2025 GM', '2026 H1 GM'],
                 datasets: [
-                    {
-                        label: 'Goal ($M)',
-                        data: [2.04, 1.02, 1.45, 0.78, 1.60, 1.17],
-                        backgroundColor: 'rgba(156, 163, 175, 0.4)',
-                        borderRadius: 6
-                    },
-                    {
-                        label: 'Actual ($M)',
-                        data: [2.15, 2.15, 2.92, 2.00, 1.75, 1.31],
-                        backgroundColor: '#34d399',
-                        borderRadius: 6
-                    }
+                    { label: 'Goal ($M)', data: [2.04, 1.45, 1.60], backgroundColor: goalColor, borderRadius: 6 },
+                    { label: 'Actual ($M)', data: [2.15, 2.92, 1.75], backgroundColor: '#10b981', borderRadius: 6 }
                 ]
             },
             options: {
@@ -341,23 +324,44 @@
                 plugins: {
                     legend: { labels: { color: '#f3f4f6', font: chartFont } },
                     datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        color: (ctx) => ctx.datasetIndex === 1 ? '#38bdf8' : '#9ca3af',
-                        font: { weight: 'bold', size: 10 },
-                        formatter: (value, ctx) => {
-                            if (ctx.datasetIndex === 1) {
-                                const goals = [2.04, 1.02, 1.45, 0.78, 1.60, 1.17];
-                                const pct = ((value / goals[ctx.dataIndex]) * 100).toFixed(1);
-                                return `$${value}M (${pct}%)`;
-                            }
-                            return `$${value}M`;
-                        }
+                        anchor: 'end', align: 'top',
+                        color: (ctx) => ctx.datasetIndex === 1 ? '#10b981' : '#9ca3af',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: (val, ctx) => ctx.datasetIndex === 1 ? `$${val}M (${((val / [2.04, 1.45, 1.60][ctx.dataIndex]) * 100).toFixed(1)}%)` : `$${val}M`
                     }
                 },
                 scales: {
-                    x: { ticks: { color: '#9ca3af', font: { size: 10 } }, grid: { color: '#1f2937' } },
+                    x: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' } },
                     y: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' }, max: 3.5 }
+                }
+            }
+        });
+
+        // 3. DPCM Chart (Electric Purple theme)
+        new Chart(document.getElementById('dpcmChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: ['2024 DPCM', '2025 DPCM', '2026 H1 DPCM'],
+                datasets: [
+                    { label: 'Goal ($M)', data: [1.02, 0.78, 1.17], backgroundColor: goalColor, borderRadius: 6 },
+                    { label: 'Actual ($M)', data: [2.15, 2.00, 1.31], backgroundColor: '#a855f7', borderRadius: 6 }
+                ]
+            },
+            options: {
+                responsive: true,
+                layout: { padding: { top: 25 } },
+                plugins: {
+                    legend: { labels: { color: '#f3f4f6', font: chartFont } },
+                    datalabels: {
+                        anchor: 'end', align: 'top',
+                        color: (ctx) => ctx.datasetIndex === 1 ? '#a855f7' : '#9ca3af',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: (val, ctx) => ctx.datasetIndex === 1 ? `$${val}M (${((val / [1.02, 0.78, 1.17][ctx.dataIndex]) * 100).toFixed(1)}%)` : `$${val}M`
+                    }
+                },
+                scales: {
+                    x: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' } },
+                    y: { ticks: { color: '#9ca3af', font: chartFont }, grid: { color: '#1f2937' }, max: 2.5 }
                 }
             }
         });
