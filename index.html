@@ -153,7 +153,7 @@
         }
 
         @media (max-width: 900px) {
-            .charts-row-3col { grid-template-columns: 1fr; }
+            .charts-row-3col { grid-template-columns: 1fr !important; }
         }
 
         .chart-card {
@@ -161,10 +161,11 @@
             border: 1px solid var(--card-border);
             border-radius: 12px;
             padding: 15px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            min-width: 0; /* Prevents CSS Grid flex overflow */
         }
 
-        .chart-card.hidden { display: none; }
+        .chart-card.hidden { display: none !important; }
 
         .chart-card-title {
             font-size: 0.95rem;
@@ -301,10 +302,10 @@
             <div class="chart-header-row">
                 <div class="chart-header-title">Executive P&amp;L Performance Dashboard</div>
                 <div class="chart-tabs">
-                    <button class="tab-btn active" onclick="switchTab('all')">All Charts</button>
-                    <button class="tab-btn" onclick="switchTab('rev')">Revenue</button>
-                    <button class="tab-btn" onclick="switchTab('gm')">Gross Margin</button>
-                    <button class="tab-btn" onclick="switchTab('dpcm')">DPCM</button>
+                    <button class="tab-btn active" onclick="switchTab('all', this)">All Charts</button>
+                    <button class="tab-btn" onclick="switchTab('rev', this)">Revenue</button>
+                    <button class="tab-btn" onclick="switchTab('gm', this)">Gross Margin</button>
+                    <button class="tab-btn" onclick="switchTab('dpcm', this)">DPCM</button>
                 </div>
             </div>
 
@@ -347,7 +348,7 @@
                 <div class="philosophy-card">
                     <div class="philosophy-icon">🤖</div>
                     <div class="philosophy-title">Hybrid Sourcing Innovation</div>
-                    <div class="philosophy-text">Strategic deployment of automated AI sourcing extensions (RecruitBot) for low-priority coverage, enabling human recruiters to focus bandwidth on tier-1 requisitions.</div>
+                    <div class="philosophy-text">Strategic deployment of automated AI sourcing extensions (RecruitBot/PAIR) for low-priority coverage, enabling human recruiters to focus bandwidth on tier-1 requisitions.</div>
                 </div>
             </div>
         </div>
@@ -362,7 +363,7 @@
                 <div class="skill-tag">Global Systems Integrator (GSI) Account Delivery</div>
                 <div class="skill-tag">Bulk Rate Reduction &amp; Cost Pass-Down Strategy</div>
                 <div class="skill-tag">Internal Operational Audits &amp; Compliance</div>
-                <div class="skill-tag">Hybrid Sourcing Automation (RecruitBot)</div>
+                <div class="skill-tag">Hybrid Sourcing Automation (RecruitBot/PAIR)</div>
                 <div class="skill-tag">High-Velocity Delivery Execution</div>
             </div>
         </div>
@@ -388,8 +389,8 @@
                 </details>
 
                 <details>
-                    <summary>🔍 Technology Strategy: Sourcing Extension via RecruitBot AI</summary>
-                    <p>Implemented RecruitBot AI as an automated digital sourcing assistant to cover low-priority and high-volume requisitions, allowing human recruiters to focus bandwidth on high-touch enterprise candidates.</p>
+                    <summary>🔍 Technology Strategy: Sourcing Extension via RecruitBot/PAIR AI</summary>
+                    <p>Implemented RecruitBot/PAIR (Pyramid AI Recruiter) as an automated digital sourcing assistant to cover low-priority and high-volume requisitions, allowing human recruiters to focus bandwidth on high-touch enterprise candidates.</p>
                 </details>
             </div>
 
@@ -415,7 +416,7 @@
         <div class="section" id="tech">
             <h2 class="section-title">Technology &amp; Analytics Ecosystem</h2>
             <div class="tech-category">
-                <span>ATS &amp; Sourcing Automation:</span> JobDiva, RecruitBot AI, LinkedIn Recruiter, ZoomInfo, Dice, Monster, CareerBuilder
+                <span>ATS &amp; Sourcing Automation:</span> JobDiva, RecruitBot/PAIR, LinkedIn Recruiter, ZoomInfo, Dice, Monster, CareerBuilder
             </div>
             <div class="tech-category">
                 <span>VMS Platforms:</span> Beeline, SAP Fieldglass
@@ -432,11 +433,14 @@
     </div>
 
     <script>
-        // Tab Switcher Logic
-        function switchTab(type) {
+        // Global Chart References
+        let chartInstances = {};
+
+        // Tab Switcher Logic with Force-Resize
+        function switchTab(type, btnElement) {
             const btns = document.querySelectorAll('.tab-btn');
             btns.forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            btnElement.classList.add('active');
 
             const container = document.getElementById('chartsContainer');
             const cRev = document.getElementById('card-rev');
@@ -457,6 +461,13 @@
                 if (type === 'gm') cGm.classList.remove('hidden');
                 if (type === 'dpcm') cDpcm.classList.remove('hidden');
             }
+
+            // Trigger reflow & recalculate Chart canvas dimensions
+            setTimeout(() => {
+                Object.values(chartInstances).forEach(chart => {
+                    if (chart) chart.resize();
+                });
+            }, 50);
         }
 
         // Register DataLabels Plugin
@@ -475,7 +486,7 @@
         };
 
         // 1. Revenue Chart
-        new Chart(document.getElementById('revenueChart').getContext('2d'), {
+        chartInstances.rev = new Chart(document.getElementById('revenueChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['2024', '2025', '2026 H1'],
@@ -503,7 +514,7 @@
         });
 
         // 2. Gross Margin Chart
-        new Chart(document.getElementById('gmChart').getContext('2d'), {
+        chartInstances.gm = new Chart(document.getElementById('gmChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['2024', '2025', '2026 H1'],
@@ -531,7 +542,7 @@
         });
 
         // 3. DPCM Chart
-        new Chart(document.getElementById('dpcmChart').getContext('2d'), {
+        chartInstances.dpcm = new Chart(document.getElementById('dpcmChart').getContext('2d'), {
             type: 'bar',
             data: {
                 labels: ['2024', '2025', '2026 H1'],
