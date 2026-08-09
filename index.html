@@ -3,11 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sumit Kanchan | US Staffing Operations & P&L Leader</title>
+    <title>Sumit Kanchan | Delivery Head & P&L Operations Leader</title>
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Sumit Kanchan | Delivery Head & P&L Operations Leader">
+    <meta property="og:description" content="Executive Digital Portfolio: 15+ years of success driving US staffing delivery, $26.6M P&L governance, and Gross Margin expansion (12.9% → 16.9%).">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sumit Kanchan | Delivery Head & P&L Operations Leader">
+    <meta name="twitter:description" content="15+ years driving US Staffing Operations, $26.6M portfolio delivery, and margin expansion.">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Chart.js & Datalabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -33,6 +43,7 @@
 
         .container { max-width: 1100px; margin: auto; padding: 0 20px; }
 
+        /* Navigation */
         nav {
             position: fixed; top: 0; left: 0; width: 100%;
             background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px);
@@ -49,6 +60,7 @@
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--accent-cyan); }
 
+        /* Header */
         header {
             text-align: center; padding: 50px 25px; background: var(--card-bg);
             border: 1px solid var(--card-border); border-radius: 16px; margin-bottom: 30px;
@@ -66,6 +78,7 @@
         .btn-secondary { background-color: transparent; color: var(--text-main); border: 1px solid var(--card-border); }
         .btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); transform: translateY(-2px); }
 
+        /* Metrics Grid */
         .metrics-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px; margin-bottom: 30px;
@@ -81,12 +94,62 @@
         .metric-number { font-size: 2.1rem; font-weight: 700; color: var(--accent-cyan); margin-bottom: 5px; }
         .metric-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Equal 3-Column Charts Grid */
+        /* Tabbed Interactive Chart Dashboard */
+        .chart-section {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chart-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 15px;
+        }
+
+        .chart-header-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .chart-tabs {
+            display: flex;
+            gap: 8px;
+            background: rgba(31, 41, 55, 0.6);
+            padding: 4px;
+            border-radius: 8px;
+            border: 1px solid var(--card-border);
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+        }
+
         .charts-row-3col {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            margin-bottom: 30px;
         }
 
         @media (max-width: 900px) {
@@ -94,22 +157,22 @@
         }
 
         .chart-card {
-            background: var(--card-bg);
+            background: rgba(17, 24, 39, 0.6);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border-radius: 12px;
+            padding: 15px;
+            transition: all 0.3s ease;
         }
 
-        .chart-title {
+        .chart-card.hidden { display: none; }
+
+        .chart-card-title {
             font-size: 0.95rem;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             text-align: center;
-            min-height: 2.8em; /* Keeps titles aligned */
+            min-height: 2.5em;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -117,10 +180,42 @@
 
         .chart-wrapper {
             position: relative;
-            height: 260px; /* Fixed identical height for all three */
+            height: 250px;
             width: 100%;
         }
 
+        /* Leadership Philosophy Cards */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .philosophy-card {
+            background: rgba(31, 41, 55, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .philosophy-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .philosophy-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .philosophy-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Sections */
         .section { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 35px; margin-bottom: 30px; }
         .section-title { font-size: 1.4rem; font-weight: 600; color: #ffffff; margin-bottom: 20px; border-bottom: 2px solid var(--card-border); padding-bottom: 10px; }
 
@@ -160,9 +255,9 @@
             <div class="nav-logo">Sumit Kanchan</div>
             <ul class="nav-links">
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="#financials">P&amp;L Performance</a></li>
-                <li><a href="#experience">Leadership</a></li>
-                <li><a href="#tech">Tech &amp; Strategy</a></li>
+                <li><a href="#financials">P&amp;L Dashboard</a></li>
+                <li><a href="#philosophy">Leadership</a></li>
+                <li><a href="#experience">Experience</a></li>
             </ul>
         </div>
     </nav>
@@ -201,28 +296,63 @@
             </div>
         </div>
 
-        <!-- Equal 3-Column Charts Section -->
-        <div id="financials" class="charts-row-3col">
-            <div class="chart-card">
-                <div class="chart-title">Revenue Goal vs Actual ($M)</div>
-                <div class="chart-wrapper">
-                    <canvas id="revenueChart"></canvas>
+        <!-- Interactive Tabbed Chart Dashboard -->
+        <div id="financials" class="chart-section">
+            <div class="chart-header-row">
+                <div class="chart-header-title">Executive P&amp;L Performance Dashboard</div>
+                <div class="chart-tabs">
+                    <button class="tab-btn active" onclick="switchTab('all')">All Charts</button>
+                    <button class="tab-btn" onclick="switchTab('rev')">Revenue</button>
+                    <button class="tab-btn" onclick="switchTab('gm')">Gross Margin</button>
+                    <button class="tab-btn" onclick="switchTab('dpcm')">DPCM</button>
                 </div>
             </div>
-            <div class="chart-card">
-                <div class="chart-title">Gross Margin Goal vs Actual ($M)</div>
-                <div class="chart-wrapper">
-                    <canvas id="gmChart"></canvas>
+
+            <div class="charts-row-3col" id="chartsContainer">
+                <div class="chart-card" id="card-rev">
+                    <div class="chart-card-title">Revenue Goal vs Actual ($M)</div>
+                    <div class="chart-wrapper">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
                 </div>
-            </div>
-            <div class="chart-card">
-                <div class="chart-title">DPCM Goal vs Actual ($M)</div>
-                <div class="chart-wrapper">
-                    <canvas id="dpcmChart"></canvas>
+                <div class="chart-card" id="card-gm">
+                    <div class="chart-card-title">Gross Margin Goal vs Actual ($M)</div>
+                    <div class="chart-wrapper">
+                        <canvas id="gmChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card" id="card-dpcm">
+                    <div class="chart-card-title">DPCM Goal vs Actual ($M)</div>
+                    <div class="chart-wrapper">
+                        <canvas id="dpcmChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- Leadership Philosophy Section -->
+        <div class="section" id="philosophy">
+            <h2 class="section-title">Leadership Philosophy &amp; Core Pillars</h2>
+            <div class="philosophy-grid">
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">📊</div>
+                    <div class="philosophy-title">Financial Governance</div>
+                    <div class="philosophy-text">Disciplined oversight of DPCM and SG&amp;A expenses, maintaining rigid target alignment across delivery units to expand margin profitability during rate negotiations.</div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">⚡</div>
+                    <div class="philosophy-title">Operational Velocity</div>
+                    <div class="philosophy-text">Sustaining high-volume delivery execution across 30+ recruiter pods through real-time operational tracking ("MB" platform) and submission-to-interview optimization.</div>
+                </div>
+                <div class="philosophy-card">
+                    <div class="philosophy-icon">🤖</div>
+                    <div class="philosophy-title">Hybrid Sourcing Innovation</div>
+                    <div class="philosophy-text">Strategic deployment of automated AI sourcing extensions (RecruitBot) for low-priority coverage, enabling human recruiters to focus bandwidth on tier-1 requisitions.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Competencies -->
         <div class="section">
             <h2 class="section-title">Core Competencies &amp; Strategic Scope</h2>
             <div class="skills-wrapper">
@@ -237,6 +367,7 @@
             </div>
         </div>
 
+        <!-- Leadership Experience -->
         <div class="section" id="experience">
             <h2 class="section-title">Leadership &amp; Operations Experience</h2>
             
@@ -280,6 +411,7 @@
             </div>
         </div>
 
+        <!-- Technology Ecosystem -->
         <div class="section" id="tech">
             <h2 class="section-title">Technology &amp; Analytics Ecosystem</h2>
             <div class="tech-category">
@@ -300,11 +432,38 @@
     </div>
 
     <script>
+        // Tab Switcher Logic
+        function switchTab(type) {
+            const btns = document.querySelectorAll('.tab-btn');
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const container = document.getElementById('chartsContainer');
+            const cRev = document.getElementById('card-rev');
+            const cGm = document.getElementById('card-gm');
+            const cDpcm = document.getElementById('card-dpcm');
+
+            if (type === 'all') {
+                container.style.gridTemplateColumns = 'repeat(3, 1fr)';
+                cRev.classList.remove('hidden');
+                cGm.classList.remove('hidden');
+                cDpcm.classList.remove('hidden');
+            } else {
+                container.style.gridTemplateColumns = '1fr';
+                cRev.classList.add('hidden');
+                cGm.classList.add('hidden');
+                cDpcm.classList.add('hidden');
+                if (type === 'rev') cRev.classList.remove('hidden');
+                if (type === 'gm') cGm.classList.remove('hidden');
+                if (type === 'dpcm') cDpcm.classList.remove('hidden');
+            }
+        }
+
         // Register DataLabels Plugin
         Chart.register(ChartDataLabels);
 
         const chartFont = { family: 'Inter', size: 10, weight: '600' };
-        const goalColor = '#475569'; // High-contrast Slate for Goal
+        const goalColor = '#475569';
 
         const commonOptions = {
             responsive: true,
@@ -315,7 +474,7 @@
             }
         };
 
-        // 1. Revenue Chart (Cyan theme)
+        // 1. Revenue Chart
         new Chart(document.getElementById('revenueChart').getContext('2d'), {
             type: 'bar',
             data: {
@@ -343,7 +502,7 @@
             }
         });
 
-        // 2. Gross Margin Chart (Emerald Green theme)
+        // 2. Gross Margin Chart
         new Chart(document.getElementById('gmChart').getContext('2d'), {
             type: 'bar',
             data: {
@@ -371,7 +530,7 @@
             }
         });
 
-        // 3. DPCM Chart (Electric Purple theme)
+        // 3. DPCM Chart
         new Chart(document.getElementById('dpcmChart').getContext('2d'), {
             type: 'bar',
             data: {
